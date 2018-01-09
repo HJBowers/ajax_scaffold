@@ -6,6 +6,9 @@ const connection = process.env.NODE_ENV === 'test'
   : 'postgres:///pets'
 const db = pgp(connection)
 
+// *********************** QUERIES ***********************
+
+
 /**
  * Gets pets and species from db
  * @return {Promise} - resolves to array of objects, each with keys 'name' and 'species_name'
@@ -18,6 +21,8 @@ const getPetsAndSpecies = () => {
                 `
   return db.any(query)
 }
+
+
 
 /**
  * Update a pet's name in the database
@@ -32,6 +37,8 @@ const updatePetName = (petId, newName) =>
       return { success: false, message: `Could not find petId ${petId}` }
     })
     .catch(err => Object({ success: false, message: err.message }))
+
+
 
 module.exports = {
   db,
